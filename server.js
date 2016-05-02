@@ -10,7 +10,7 @@
 
     // configuration =================
 
-    mongoose.connect('mongodb://<user>:<pass>@jello.modulusmongo.net:27017/wozehO9b');     // connect to mongoDB database on modulus.io
+    mongoose.connect('mongodb://localhost/27017');     // connect to mongoDB database on modulus.io
 
     app.use(express.static(__dirname + '/public'));                 // set the static files location /public/img will be /img for users
     app.use(morgan('dev'));                                         // log every request to the console
@@ -19,9 +19,9 @@
     app.use(bodyParser.json({ type: 'application/vnd.api+json' })); // parse application/vnd.api+json as json
     app.use(methodOverride());
 
-    //define model =========================
+    // define model =================
 
-    var ToDo = mongoose.model('ToDo', {
+    var Todo = mongoose.model('Todo', {
         text : String
     });
 
@@ -81,7 +81,7 @@
     });
 
     // application -------------------------------------------------------------
-    app.get('*', function(req, res) {
+    app.get('', function(req, res) {
         res.sendfile('./public/index.html'); // load the single view file (angular will handle the page changes on the front-end)
     });
 
